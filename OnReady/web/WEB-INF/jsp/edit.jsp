@@ -23,18 +23,19 @@
                             <h3>Modifique la Película</h3>
                             
                             <form:errors path="*" element="div" cssClass="alert alert-danger" />
-                            
-                            <p>
-                                <form:label path="titulo">Título</form:label>
-                                <form:input path="titulo" cssClass="form-control" />
-                            </p>
-                            
-                            <p>
-                                <form:label path="estreno">Estreno</form:label>
-                                <form:input path="estreno" cssClass="form-control" />
-                            </p>
-                            
-                            <p>
+                                <p>
+                                    <form:label path="titulo">Título</form:label>
+                                    <form:input path="titulo" cssClass="form-control" />
+                                </p>
+                                <p>
+                                    <form:label path="estreno">Estreno</form:label>
+                                    <form:input path="estreno" cssClass="form-control" />
+                                </p>
+                                <p>
+                                    <form:label path="sinopsis">Sinopsis</form:label>
+                                    <form:input path="sinopsis" cssClass="form-control" />
+                                </p>
+                                <p>
                                 <form:label path="pais">Pais de origen</form:label>
                                 <table>
                                     <tr>

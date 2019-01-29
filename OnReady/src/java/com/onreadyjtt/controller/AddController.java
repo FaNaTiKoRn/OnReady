@@ -59,8 +59,8 @@ public class AddController {
         {
             this.jdbcTemplate.update
                                     (
-                                        "insert into movies (titulo,estreno,pais) values (?,?,?)", // SQL QUERY para Insertar Registro o nueva Película.
-                                        peli.getTitulo(),peli.getEstreno(),peli.getPais()
+                                        "insert into movies (titulo,estreno,pais,sinopsis) values (?,?,?,?)", // SQL QUERY para Insertar Registro o nueva Película.
+                                        peli.getTitulo(),peli.getEstreno(),peli.getPais(),peli.getSinopsis()
                                     );
             return new ModelAndView("redirect:/home.htm");
         }

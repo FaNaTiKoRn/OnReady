@@ -28,30 +28,30 @@
                 <h1>Listado de Películas</h1>
             </div>
             <div class="row">
-                            <a href="<c:url value="home.htm?busca=true"/>" data-html="true" data-toggle="tooltip" title="Burcar <b>por Título</b>">Buscar</a>
-                            <div class="container">
-                                <div class="input-group input-group-sm mb-3">
-                                    
-                                    <input type="text" class="form-control" placeholder="Buscar por título..." aria-label="Recipient's username" aria-describedby="inputGroup-sizing-sm">
+                <table class="table table-striped table-hover" style="text-align:center;">
+                    <thead>
+                        <tr>
+                            <th style="text-align:center;"><a href="<c:url value="home.htm?orden=titulo"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Título</b>">Título <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
+                            <th style="text-align:center;"><a href="<c:url value="home.htm?orden=estreno"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Año de Estreno</b>">Año <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
+                            <th style="text-align:center;"><a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>">País <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
+                            <th>
+                                <div style="text-align:right;" class="input-group input-group-sm mb-3" style="width:333px">
+                                    <input style="text-align:right" type="text" class="form-control" placeholder="Buscar por título..." aria-label="Recipient's username" aria-describedby="inputGroup-sizing-sm">
                                     <div class="input-group-prepend">
-                                        <button class="btn btn-outline-secondary input-group-text" type="button" id="button-addon2">Buscar</button>
+                                        <a href="home.htm?busca=true" class="btn btn-outline-secondary input-group-text" role="button" data-html="true" data-toggle="tooltip" title="Burcar <b>por Título</b>">Buscar</a>
                                     </div>
                                 </div>
-                            </div>
-
-                <table class="table table-bordered table-striped table-hover">
-                    <thead>
-                        <tr align="center">
-                            <th><a href="<c:url value="home.htm?orden=titulo"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Título</b>">Título <i class="fas fa-sort-down" /i></a></th>
-                            <th><a href="<c:url value="home.htm?orden=estreno"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Año de Estreno</b>">Año <i class="fas fa-sort-down" /i></a></th>
-                            <th><a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>">País <i class="fas fa-sort-down" /i></a></th>
-                            <th></th>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${datos}" var="dato">
                             <tr>
-                                <td><c:out value="${dato.titulo}" /></td>
+                                <td>
+                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="left" >
+                                    <br>
+                                    <c:out value="${dato.titulo}" />
+                                </td>
                                 <td><c:out value="${dato.estreno}" /></td>
                                 <td><c:out value="${dato.nombre}" /></td>
                                 <td>

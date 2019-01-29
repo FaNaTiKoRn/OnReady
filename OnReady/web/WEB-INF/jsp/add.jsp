@@ -30,6 +30,10 @@
                                 <form:input path="estreno" cssClass="form-control" />
                             </p>
                             <p>
+                                <form:label path="sinopsis">Sinopsis:</form:label>
+                                <form:input path="sinopsis" cssClass="form-control" />
+                            </p>
+                            <p>
                                 <form:label path="pais">Pais de origen</form:label>
                                 <table>
                                     <tr>

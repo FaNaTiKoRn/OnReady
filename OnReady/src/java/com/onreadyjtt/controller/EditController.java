@@ -41,7 +41,7 @@ public class EditController
         int id=Integer.parseInt(request.getParameter("id"));
         Pelicula datos = this.selectPelicula(id);
         mav.setViewName("edit");
-        mav.addObject("pelicula",new Pelicula(id,datos.getTitulo(),datos.getEstreno(),datos.getPais()));
+        mav.addObject("pelicula",new Pelicula(id,datos.getTitulo(),datos.getEstreno(),datos.getPais(),datos.getSinopsis()));
         String sql = "select * from paises";
         List paises = this.jdbcTemplate.queryForList(sql);
         mav.addObject("paises", paises);
@@ -67,7 +67,7 @@ public class EditController
             int id=Integer.parseInt(request.getParameter("id"));
             Pelicula datos=this.selectPelicula(id);
             mav.setViewName("edit");
-            mav.addObject("pelicula",new Pelicula(id,datos.getTitulo(),datos.getEstreno(),datos.getPais()));
+            mav.addObject("pelicula",new Pelicula(id,datos.getTitulo(),datos.getEstreno(),datos.getPais(),datos.getSinopsis()));
             return mav;
         }else
         {
@@ -77,10 +77,11 @@ public class EditController
                     "update movies "
                     + "set titulo=?,"
                     + " estreno=?,"
-                    + "pais=? "
+                    + "pais=?,"
+                    + "sinopsis=? "
                     + "where "
                     + "id=? ",
-                    peli.getTitulo(),peli.getEstreno(),peli.getPais(),id
+                    peli.getTitulo(),peli.getEstreno(),peli.getPais(),peli.getSinopsis(),id
                 );
             return new ModelAndView("redirect:/home.htm");
         }
@@ -98,11 +99,10 @@ public class EditController
                         movie.setTitulo(rs.getString("titulo"));
                         movie.setEstreno(rs.getString("estreno"));
                         movie.setPais(rs.getString("pais"));
+                        movie.setSinopsis(rs.getString("sinopsis"));
                     }
                     return movie;
                 }
-
-
             }
         );
     }

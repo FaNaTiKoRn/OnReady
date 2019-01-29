@@ -39,11 +39,11 @@ public class HomeController {
         { //Sólo si envío parámetros
             if(orden.equals("ASC"))
             {
-                sql = "SELECT id, titulo, estreno, paises.nombre FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY " + orden + " ASC";
+                sql = "SELECT id, titulo, estreno, paises.nombre, sinopsis FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY " + orden + " ASC";
             }
             else
             {
-                sql = "SELECT id, titulo, estreno, paises.nombre FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY " + orden;
+                sql = "SELECT id, titulo, estreno, paises.nombre, sinopsis FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY " + orden;
             }
             List datos = this.jdbcTemplate.queryForList(sql);
             mav.addObject("datos", datos);
@@ -53,7 +53,7 @@ public class HomeController {
         }
         else
         {
-            sql = "SELECT id, titulo, estreno, paises.nombre FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY id";
+            sql = "SELECT id, titulo, estreno, paises.nombre, sinopsis FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY id";
             List datos = this.jdbcTemplate.queryForList(sql);
             mav.addObject("datos", datos);
             mav.setViewName("home");
@@ -71,8 +71,6 @@ public class HomeController {
         
         return "home";
     }
-    
-    
 
     @RequestMapping("paises.htm")
     public ModelAndView paises()

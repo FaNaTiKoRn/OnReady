@@ -31,8 +31,8 @@ public class ValidaPelicula implements Validator {
         Pelicula pelicula = (Pelicula) o; //Refundición del objeto para que pase a ser de tipo 'Pelicula'
 
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "required.nombre", "Todos los campos son obligatorios."); // Los campos no deben estar vacíos.
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "estreno", "required.nombre", "Todos los campos son obligatorios.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pais", "required.nombre", "Todos los campos son obligatorios.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "estreno", "required.estreno", "Todos los campos son obligatorios.");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pais", "required.pais", "Todos los campos son obligatorios.");
         //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "director", "required.correo", "Todos los campos son obligatorios."); 
         
        

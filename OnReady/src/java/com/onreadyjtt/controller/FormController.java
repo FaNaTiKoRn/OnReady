@@ -81,23 +81,10 @@ public class FormController
             mav.setViewName("exito");
             mav.addObject("titulo",p.getTitulo());
             mav.addObject("estreno",p.getEstreno());
+            mav.addObject("sinopsis",p.getSinopsis());
             mav.addObject("pais",p.getPais());
             return mav;
         }
     
     }
-    
-    //método para poblar nuestro select
-    @ModelAttribute("listaPaises")
-    public Map<String,String> listadoPaises()
-    {
-        Map<String,String> pais=new LinkedHashMap<>();
-        pais.put("1","Chile");
-        pais.put("2","México");
-        pais.put("3","Colombia");
-        pais.put("4","Bolivia");
-        pais.put("5","España");
-        pais.put("6","Argentina");
-        return pais;
-    }    
 }
