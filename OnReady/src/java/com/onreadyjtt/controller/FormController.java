@@ -1,10 +1,12 @@
-
 package com.onreadyjtt.controller;
 
+import com.onready.models.Conecta;
 import com.onready.models.Pelicula;
 import com.onready.models.ValidaPelicula;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -18,8 +20,27 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("form.htm")
 public class FormController 
 {
+    /*
+    private JdbcTemplate jdbcTemplate;
+    public FormController ()
+    {
+        Conecta con = new Conecta();
+        this.jdbcTemplate = new JdbcTemplate(con.conecta());
+    }
+    
+    @RequestMapping("form.htm")
+    public ModelAndView form()
+    {
+        ModelAndView mav = new ModelAndView();
+        String sql = "select * from paises";
+        List datos = this.jdbcTemplate.queryForList(sql);
+        mav.addObject("datos", datos);
+        mav.setViewName("form");
+        return mav;
+    }*/
+    
     private ValidaPelicula validaPelicula;
-
+    //  private JdbcTemplate jdbcTemplate;
     public FormController() 
     {
         this.validaPelicula = new ValidaPelicula();
@@ -63,6 +84,7 @@ public class FormController
             mav.addObject("pais",p.getPais());
             return mav;
         }
+    
     }
     
     //método para poblar nuestro select
@@ -77,6 +99,5 @@ public class FormController
         pais.put("5","España");
         pais.put("6","Argentina");
         return pais;
-    }
-    
+    }    
 }

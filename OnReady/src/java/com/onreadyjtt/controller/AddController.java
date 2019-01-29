@@ -4,6 +4,7 @@ package com.onreadyjtt.controller;
 import com.onready.models.Conecta;
 import com.onready.models.Pelicula;
 import com.onready.models.ValidaPelicula;
+import java.util.List;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -31,6 +32,9 @@ public class AddController {
         ModelAndView mav=new ModelAndView();
         mav.setViewName("add");
         mav.addObject("pelicula",new Pelicula());
+        String sql = "select * from paises";
+        List paises = this.jdbcTemplate.queryForList(sql);
+        mav.addObject("paises", paises);
         return mav;
     }
     @RequestMapping(method=RequestMethod.POST)
@@ -47,16 +51,18 @@ public class AddController {
             ModelAndView mav=new ModelAndView();
             mav.setViewName("add");
             mav.addObject("pelicula",new Pelicula());
+            String sql = "select * from paises";
+            List paises = this.jdbcTemplate.queryForList(sql);
+            mav.addObject("paises", paises);
             return mav;
         }else
         {
-        this.jdbcTemplate.update
-        (
-        "insert into movies (titulo,estreno,pais) values (?,?,?)", // SQL QUERY para Insertar Registro o nueva Película.
-         peli.getTitulo(),peli.getEstreno(),peli.getPais()
-        );
-         return new ModelAndView("redirect:/home.htm");
+            this.jdbcTemplate.update
+                                    (
+                                        "insert into movies (titulo,estreno,pais) values (?,?,?)", // SQL QUERY para Insertar Registro o nueva Película.
+                                        peli.getTitulo(),peli.getEstreno(),peli.getPais()
+                                    );
+            return new ModelAndView("redirect:/home.htm");
         }
-       
     }
 }

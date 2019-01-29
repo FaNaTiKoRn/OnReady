@@ -6,6 +6,7 @@ import com.onready.models.Pelicula;
 import com.onready.models.ValidaPelicula;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -41,6 +42,13 @@ public class EditController
         Pelicula datos = this.selectPelicula(id);
         mav.setViewName("edit");
         mav.addObject("pelicula",new Pelicula(id,datos.getTitulo(),datos.getEstreno(),datos.getPais()));
+        String sql = "select * from paises";
+        List paises = this.jdbcTemplate.queryForList(sql);
+        mav.addObject("paises", paises);
+        String sql2 = "SELECT iso3, nombre FROM paises INNER JOIN movies WHERE paises.iso3 = movies.pais AND movies.id = '" + id + "'";
+        List paisActual = this.jdbcTemplate.queryForList(sql2);
+        mav.addObject("paisActual", paisActual);
+
         return mav;
     }
     @RequestMapping(method=RequestMethod.POST)

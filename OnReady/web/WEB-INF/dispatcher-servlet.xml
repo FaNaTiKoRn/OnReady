@@ -25,6 +25,8 @@
                 <prop key="add.htm">addController</prop>
                 <prop key="edit.htm">editController</prop>
                 <prop key="delete.htm">deleteController</prop>
+                <prop key="country.htm">countryController</prop>
+                <prop key="paises.htm">homeController</prop>
             </props>
         </property>
     </bean>
@@ -43,4 +45,5 @@
     <bean name="addController" class="com.onreadyjtt.controller.AddController" />
     <bean name="editController" class="com.onreadyjtt.controller.EditController" />
     <bean name="deleteController" class="com.onreadyjtt.controller.DeleteController" />
+    <bean name="countryController" class="com.onreadyjtt.controller.CountryController" />
 </beans>

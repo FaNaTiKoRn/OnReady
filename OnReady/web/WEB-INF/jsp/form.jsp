@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>JSP Page</title>
+        <title>.:VídeoClub:.</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
     </head>
     <body>
@@ -20,7 +20,6 @@
                        <form:input path="titulo" cssClass="form-control" />
                        <form:errors path="titulo" />
                     </p>
-                    
                     <p>
                        <form:label path="estreno">Año</form:label>
                        <form:input path="estreno" cssClass="form-control" />

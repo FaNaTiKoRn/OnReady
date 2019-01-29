@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>Hola desde Spring Web MVC</title>
+        <title>.:VídeoClub:.</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     </head>
     <body>
@@ -15,11 +15,11 @@
                 <li class="active">Agregar</li>
             </ol>
             <div class="panel panel-primary">
-                <div class="panel-heading">Formulario</div>
+                <div class="panel-heading">Agregar</div>
                 <div class="panel-body">
                    
                         <form:form method="post" commandName="pelicula">
-                            <h1>Complete el formulario</h1>
+                            <h3>Agregue la Película</h3>
                             <form:errors path="*" element="div" cssClass="alert alert-danger" />
                             <p>
                                 <form:label path="titulo">Título</form:label>
@@ -31,7 +31,18 @@
                             </p>
                             <p>
                                 <form:label path="pais">Pais de origen</form:label>
-                                <form:input path="pais" cssClass="form-control" />
+                                <table>
+                                    <tr>
+                                        <td>
+                                            <select name="pais">
+                                                <option value="0">Seleccione el país...</option>
+                                                <c:forEach items="${paises}" var="pais">
+                                                    <option value="${pais.iso3}">${pais.nombre}</option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                </table>    
                             </p>
                             <hr />
                             <input type="submit" value="Enviar" class="btn btn-danger" />
