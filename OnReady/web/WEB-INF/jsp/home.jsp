@@ -16,13 +16,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"  %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%
-String c1 = request.getParameter ("Nsiniestro");
-%>
 
-<%
-String c2 = request.getParameter ("Nsiniestro");
-%> 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.js" ></script>
@@ -40,16 +34,28 @@ String c2 = request.getParameter ("Nsiniestro");
             <div class="row">
                 <h1>Listado de Películas</h1>
             </div>
-            <div class="row">
+            <div class="row" style="text-align:center;">
                 <table class="table table-striped table-hover" style="text-align:center;">
                     <thead>
                         <tr>
-                            <th style="text-align:center;"><a href="<c:url value="home.htm?orden=titulo"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Título</b>">Título <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
-                            <th style="text-align:center;"><a href="<c:url value="home.htm?orden=estreno"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Año de Estreno</b>">Año <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
-                            <th style="text-align:center;"><a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>">País <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
+                            <th>
+                            <div class="btn-group dropleft" style="text-align:left;">
+                                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                  ordenar
+                                </button>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                                    <a href="<c:url value="home.htm?orden=titulo"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Título</b>" class="dropdown-item" type="button">Titulo</a>
+                                    <a href="<c:url value="home.htm?orden=estreno"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Año de Estreno</b>" class="dropdown-item" type="button">Año</a>
+                                    <a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>" class="dropdown-item" type="button">País</a>
+                                  </div>
+                              </div>
+                            </th>
+                            <th></th>
+
+                            <th></th><th></th>
                             <th>
                                 <div style="text-align:right;" class="input-group input-group-sm mb-3" style="width:333px">
-                                    <input style="text-align:right" id="busqueda" type="text" class="form-control" placeholder="Buscar por título..." aria-label="Recipient's username" aria-describedby="inputGroup-sizing-sm">
+                                    <input style="text-align:right" id="busqueda" type="text" class="form-control" placeholder="Buscar por título..." aria-describedby="inputGroup-sizing-sm">
                                     <div class="input-group-prepend">
                                         <button type="button" onClick="busca()" class="btn btn-outline-secondary input-group-text fas fa-search" role="button" data-html="true" data-toggle="tooltip" title="Burcar <b>por Título</b>">
                                     </div>
@@ -59,17 +65,47 @@ String c2 = request.getParameter ("Nsiniestro");
                     </thead>
                     <tbody>
                         <c:forEach items="${datos}" var="dato">
+                            <c:set var="loop" value="1" scope="request"/>
                             <tr>
                                 <td>
-                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="left" >
-                                    <br>
-                                    <c:out value="${dato.titulo}" />
+                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="bottom" >
+                                    <p><b><c:out value="${dato.titulo}" /></b><br><em>(<c:out value="${dato.estreno}" />)</em></p>
+                                    <p><c:out value="${dato.nombre}" /></p>
+                                    <p><a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
+                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a></p>
+                                    <c:if test="${(loop < 4)}">
+                                    ${loop}=${loop}+${loop};
+                                        
+                                        <c:out value="${loop}" />
+                                    </c:if>
                                 </td>
-                                <td><c:out value="${dato.estreno}" /></td>
-                                <td><c:out value="${dato.nombre}" /></td>
                                 <td>
-                                    <a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
-                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a>
+                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="bottom" >
+                                    <p><b><c:out value="${dato.titulo}" /></b><br><em>(<c:out value="${dato.estreno}" />)</em></p>
+                                    <p><c:out value="${dato.nombre}" /></p>
+                                    <p><a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
+                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a></p>
+                                </td>
+                                <td>
+                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="bottom" >
+                                    <p><b><c:out value="${dato.titulo}" /></b><br><em>(<c:out value="${dato.estreno}" />)</em></p>
+                                    <p><c:out value="${dato.nombre}" /></p>
+                                    <p><a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
+                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a></p>
+                                </td>
+                                <td>
+                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="bottom" >
+                                    <p><b><c:out value="${dato.titulo}" /></b><br><em>(<c:out value="${dato.estreno}" />)</em></p>
+                                    <p><c:out value="${dato.nombre}" /></p>
+                                    <p><a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
+                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a></p>
+                                </td>
+                                <td>
+                                    <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="bottom" >
+                                    <p><b><c:out value="${dato.titulo}" /></b><br><em>(<c:out value="${dato.estreno}" />)</em></p>
+                                    <p><c:out value="${dato.nombre}" /></p>
+                                    <p><a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
+                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a></p>
                                 </td>
                             </tr>
                         </c:forEach>

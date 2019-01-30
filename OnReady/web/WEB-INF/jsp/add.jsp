@@ -1,7 +1,14 @@
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"   %>
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.js" ></script>
+
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8" />
@@ -27,7 +34,7 @@
                             </p>
                             <p>
                                 <form:label path="estreno">Fecha de estreno:</form:label>
-                                <form:input path="estreno" cssClass="form-control" />
+                                <form:input title="Sólo se admite el AÑO (Ej.: 2019)" data-placement="left" maxlength="4" pattern="[0-9]{4}" path="estreno" cssClass="form-control" />
                             </p>
                             <p>
                                 <form:label path="sinopsis">Sinopsis:</form:label>
@@ -57,3 +64,9 @@
         </div>
     </body>
 </html>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
