@@ -34,7 +34,16 @@ public class HomeController {
         ModelAndView mav = new ModelAndView();
         String orden = request.getParameter("orden");
         String sort = request.getParameter("sort");
+        String busca = request.getParameter("busca");
         String sql = "";
+        if((busca != null) && (!busca.equals("")))
+        {
+            sql = "SELECT id, titulo, estreno, paises.nombre, sinopsis FROM movies INNER JOIN paises where titulo LIKE \"%" + busca + "%\" AND movies.pais=paises.iso3";
+            List datos = this.jdbcTemplate.queryForList(sql);
+            mav.addObject("datos", datos);
+            mav.setViewName("home");
+            return mav;
+        }            
         if((orden != null) && (!orden.equals("")))
         { //Sólo si envío parámetros
             if(orden.equals("ASC"))
@@ -68,7 +77,6 @@ public class HomeController {
         modelo.addAttribute("iso2", pais.getIso2());
         modelo.addAttribute("nombre", pais.getNombre());
         modelo.addAttribute("capital", pais.getCapital());
-        
         return "home";
     }
 

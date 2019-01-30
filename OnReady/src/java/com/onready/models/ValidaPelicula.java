@@ -30,13 +30,15 @@ public class ValidaPelicula implements Validator {
         
         Pelicula pelicula = (Pelicula) o; //Refundición del objeto para que pase a ser de tipo 'Pelicula'
 
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "required.nombre", "Todos los campos son obligatorios."); // Los campos no deben estar vacíos.
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "estreno", "required.estreno", "Todos los campos son obligatorios.");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "pais", "required.pais", "Todos los campos son obligatorios.");
-        //ValidationUtils.rejectIfEmptyOrWhitespace(errors, "director", "required.correo", "Todos los campos son obligatorios."); 
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "titulo", "required.nombre", "El campo Título es obligatorio."); // Los campos no deben estar vacíos.
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "estreno", "required.estreno", "El campo Fecha de estreno es obligatorio.");
+        if(pelicula.getPais().equals("0"))
+        {
+	    errors.rejectValue("pais", "required.pais","Seleccione un País");
+	}
         
-       
-/*        if (!(pelicula.getCorreo() != null && pelicula.getCorreo().isEmpty()))
+/*      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "director", "required.correo", "Todos los campos son obligatorios.");
+        if (!(pelicula.getCorreo() != null && pelicula.getCorreo().isEmpty()))
         {
             this.pattern = Pattern.compile(EMAIL_PATTERN);
             this.matcher = pattern.matcher(pelicula.getCorreo());
@@ -47,11 +49,6 @@ public class ValidaPelicula implements Validator {
         }
 */
         
-        if(pelicula.getPais().equals(""))
-        {
-	    errors.rejectValue("pais", "required.pais","Seleccione un país");
-	}
-        
+ 
     }
-    
 }

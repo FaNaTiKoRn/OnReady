@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta charset="utf-8" />
-        <title>.:VídeoClub:.</title>
+        <title>.:on{Cinema}:.</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
     </head>
     <body>
@@ -49,7 +49,8 @@
                                 </table>    
                             </p>
                             <hr />
-                            <input type="submit" value="Enviar" class="btn btn-danger" />
+                            <input type="submit" value="Guardar" class="btn btn-success" />
+                            <a href="<c:url value="home.htm"/>" class="btn btn-secondary">Cancelar</a><br/>
                         </form:form>
                 </div>
             </div>

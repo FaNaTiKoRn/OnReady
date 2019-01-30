@@ -5,11 +5,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 --%>
 
+<script> //Script para enviar parámetros para búsqueda de películas por título 
+    function busca() {
+	var titulo=document.getElementById('busqueda');
+	location.href ='home.htm?busca=' + titulo.value;
+    }
+</script> 
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"  %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%
+String c1 = request.getParameter ("Nsiniestro");
+%>
 
+<%
+String c2 = request.getParameter ("Nsiniestro");
+%> 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.js" ></script>
@@ -18,7 +31,7 @@
 <html>
     <head>
         <meta charset=UTF-8" />
-        <title>.:VídeoClub:.</title>
+        <title>.:on{Ready}/Cinema:.</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     </head>
@@ -36,9 +49,9 @@
                             <th style="text-align:center;"><a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>">País <i class="fas fa-sort-down" /i><i class="fas fa-sort-up" /i></a></th>
                             <th>
                                 <div style="text-align:right;" class="input-group input-group-sm mb-3" style="width:333px">
-                                    <input style="text-align:right" type="text" class="form-control" placeholder="Buscar por título..." aria-label="Recipient's username" aria-describedby="inputGroup-sizing-sm">
+                                    <input style="text-align:right" id="busqueda" type="text" class="form-control" placeholder="Buscar por título..." aria-label="Recipient's username" aria-describedby="inputGroup-sizing-sm">
                                     <div class="input-group-prepend">
-                                        <a href="home.htm?busca=true" class="btn btn-outline-secondary input-group-text" role="button" data-html="true" data-toggle="tooltip" title="Burcar <b>por Título</b>">Buscar</a>
+                                        <button type="button" onClick="busca()" class="btn btn-outline-secondary input-group-text fas fa-search" role="button" data-html="true" data-toggle="tooltip" title="Burcar <b>por Título</b>">
                                     </div>
                                 </div>
                             </th>
@@ -55,8 +68,8 @@
                                 <td><c:out value="${dato.estreno}" /></td>
                                 <td><c:out value="${dato.nombre}" /></td>
                                 <td>
-                                    <a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></span></a>
-                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></span></a>
+                                    <a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
+                                    <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a>
                                 </td>
                             </tr>
                         </c:forEach>
