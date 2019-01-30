@@ -25,7 +25,7 @@
 <html>
     <head>
         <meta charset=UTF-8" />
-        <title>.:on{Ready}/Cinema:.</title>
+        <title>.: on{Cinema} :.</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.css" />
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     </head>
@@ -73,11 +73,6 @@
                                     <p><c:out value="${dato.nombre}" /></p>
                                     <p><a href="<c:url value="edit.htm?id=${dato.id}"/>" class="btn btn-warning far fa-edit"></a>
                                     <a href="<c:url value="delete.htm?id=${dato.id}"/>" class="btn btn-danger far fa-trash-alt"></a></p>
-                                    <c:if test="${(loop < 4)}">
-                                    ${loop}=${loop}+${loop};
-                                        
-                                        <c:out value="${loop}" />
-                                    </c:if>
                                 </td>
                                 <td>
                                     <img src="public/thumbnails/${dato.id}.jpg" class="img-thumbnail" data-html="true" data-toggle="tooltip" title="<b>${dato.titulo} <em>(${dato.estreno})</em></b><br>${dato.sinopsis}" data-placement="bottom" >

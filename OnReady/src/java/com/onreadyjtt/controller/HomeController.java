@@ -7,7 +7,9 @@ package com.onreadyjtt.controller;
 
 import com.onready.models.Conecta;
 import com.onready.models.Pais;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.ui.ModelMap;
@@ -44,14 +46,13 @@ public class HomeController {
         String sort = request.getParameter("sort");
         String busca = request.getParameter("busca");
         String sql = "";
+        int tamanio = 0;
         if((busca != null) && (!busca.equals("")))
         {
             sql = "SELECT id, titulo, estreno, paises.nombre, sinopsis, paises.iso3 AS iso3 FROM movies INNER JOIN paises where titulo LIKE \"%" + busca + "%\" AND movies.pais=paises.iso3";
             List datos = this.jdbcTemplate.queryForList(sql);
             mav.addObject("datos", datos);
-            sql = "SELECT COUNT(id) AS registros FROM movies INNER JOIN paises where titulo LIKE \"%" + busca + "%\" AND movies.pais=paises.iso3";
-            List registros = this.jdbcTemplate.queryForList(sql);
-            mav.addObject("registros", registros);
+            tamanio = datos.size();
             mav.setViewName("home");
             return mav;
         }            
@@ -67,9 +68,7 @@ public class HomeController {
             }
             List datos = this.jdbcTemplate.queryForList(sql);
             mav.addObject("datos", datos);
-            sql = "SELECT COUNT(id) FROM movies INNER JOIN paises where movies.pais=paises.iso3";
-            List registros = this.jdbcTemplate.queryForList(sql);
-            mav.addObject("registros", registros);
+            tamanio = datos.size();
             mav.setViewName("home");
             return mav;
         }
@@ -78,9 +77,7 @@ public class HomeController {
             sql = "SELECT id, titulo, estreno, paises.nombre, sinopsis, paises.iso3 AS iso3 FROM movies INNER JOIN paises where movies.pais=paises.iso3 ORDER BY titulo";
             List datos = this.jdbcTemplate.queryForList(sql);
             mav.addObject("datos", datos);
-            sql = "SELECT COUNT(id) FROM movies INNER JOIN paises where movies.pais=paises.iso3";
-            List registros = this.jdbcTemplate.queryForList(sql);
-            mav.addObject("registros", registros);
+            tamanio = datos.size();
             mav.setViewName("home");
             return mav;
         }
