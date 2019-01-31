@@ -1,34 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.onreadyjtt.controller;
 
-import com.onready.models.Conecta;
-import com.onready.models.Pais;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import com.onready.models.Pais;
+import com.onready.models.Conecta;
+import org.springframework.ui.ModelMap;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /*
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Component;
-import org.springframework.web.util.UriComponentsBuilder;
+ *IMPORTACIONES que no se implementaron porque no se logró la paginación del contenido a pesar de las pruebas...
+ * más abajo está el código comentado...
+*/
+//import javax.servlet.http.HttpServletResponse;
+//import org.springframework.context.ApplicationListener;
+//import org.springframework.stereotype.Component;
+//import org.springframework.web.util.UriComponentsBuilder;
 
-IMPORTACIONES que no se implementaron porque no se logró la paginación del contenido...
-/**
- *
- * @author JoseTT
- */
 public class HomeController {
     private JdbcTemplate jdbcTemplate;
     public HomeController ()
@@ -37,7 +27,6 @@ public class HomeController {
         this.jdbcTemplate = new JdbcTemplate(con.conecta());
     }
     
-    //@RequestMapping("home.htm")
     @RequestMapping(value="home.htm", method=RequestMethod.GET)
     public ModelAndView home( HttpServletRequest request)
     {
