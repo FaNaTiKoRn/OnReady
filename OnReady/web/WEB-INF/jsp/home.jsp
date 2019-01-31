@@ -1,25 +1,20 @@
 <%-- 
-    Document   : home
+    Document   : Main View.
     Created on : 26/01/2019, 07:08:38
-    Author     : JoseTT
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    Author     : José Torres Tortorella
+    Comments   : This file represents the View from the Main web redirection for the Project.
 --%>
-
-<script> //Script para enviar parámetros para búsqueda de películas por título 
-    function busca() {
-	var titulo=document.getElementById('busqueda');
-	location.href ='home.htm?busca=' + titulo.value;
-    }
-</script> 
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"  %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
+<!-- Scripts para la correcta implementación de Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.js" ></script>
+
 <!DOCTYPE html>
 
 <html>
@@ -27,7 +22,7 @@
         <meta charset=UTF-8" />
         <title>.: on{Cinema} :.</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.css" />
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" />
     </head>
     <body>
         <div class="container">
@@ -43,16 +38,16 @@
                                 <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                   ordenar
                                 </button>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                    <a href="<c:url value="home.htm?orden=titulo"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Título</b>" class="dropdown-item" type="button">Titulo</a>
-                                    <a href="<c:url value="home.htm?orden=estreno"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Año de Estreno</b>" class="dropdown-item" type="button">Año</a>
-                                    <a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>" class="dropdown-item" type="button">País</a>
-                                  </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                                        <a href="<c:url value="home.htm?orden=titulo"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Título</b>" class="dropdown-item" type="button">Titulo</a>
+                                        <a href="<c:url value="home.htm?orden=estreno"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por Año de Estreno</b>" class="dropdown-item" type="button">Año</a>
+                                        <a href="<c:url value="home.htm?orden=nombre"/>" data-html="true" data-toggle="tooltip" title="Ordenar <b>por País de Origen</b>" class="dropdown-item" type="button">País</a>
+                                    </div>
                               </div>
                             </th>
                             <th></th>
-
-                            <th></th><th></th>
+                            <th></th>
+                            <th></th>
                             <th>
                                 <div style="text-align:right;" class="input-group input-group-sm mb-3" style="width:333px">
                                     <input style="text-align:right" id="busqueda" type="text" class="form-control" placeholder="Buscar por título..." aria-describedby="inputGroup-sizing-sm">
@@ -114,10 +109,13 @@
     </body>
 </html>
 
-<!-- SCRIPT PARA ACTIVAR TOOLTIP CON BOOTSTRAP -->
+<!-- Script para enviar parámetros para búsqueda de películas por Título -->
 <script>
-$(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+    function busca() {
+	var titulo=document.getElementById('busqueda');
+	location.href ='home.htm?busca=' + titulo.value;
+    }
 </script>
+
+
 

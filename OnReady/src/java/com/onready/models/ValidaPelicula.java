@@ -1,28 +1,14 @@
-
 package com.onready.models;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
-
+import org.springframework.validation.ValidationUtils;
 
 public class ValidaPelicula implements Validator {
-
-    /*
-    private static final String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
-   + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
-   */
-    
-     private Pattern pattern;
-     private Matcher matcher;
-    
     @Override
     public boolean supports(Class<?> type) 
     {
         return Pelicula.class.isAssignableFrom(type);
-       // Es estándar, sólo cambio el nombre de la clase.
     }
 
     @Override
@@ -34,21 +20,7 @@ public class ValidaPelicula implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "estreno", "required.estreno", "El campo Fecha de estreno es obligatorio.");
         if(pelicula.getPais().equals("0"))
         {
-	    errors.rejectValue("pais", "required.pais","Seleccione un País");
+	    errors.rejectValue("pais", "required.pais","Seleccione un País de la lista.");
 	}
-        
-/*      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "director", "required.correo", "Todos los campos son obligatorios.");
-        if (!(pelicula.getCorreo() != null && pelicula.getCorreo().isEmpty()))
-        {
-            this.pattern = Pattern.compile(EMAIL_PATTERN);
-            this.matcher = pattern.matcher(pelicula.getCorreo());
-             if (!matcher.matches()) {
-                errors.rejectValue("correo", "correo.incorrect",
-                  "El E-Mail "+pelicula.getCorreo()+" no es válido");
-               }
-        }
-*/
-        
- 
     }
 }

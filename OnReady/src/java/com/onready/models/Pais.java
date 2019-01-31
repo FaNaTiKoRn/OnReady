@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.onready.models;
 
-/**
- *
- * @author JoseTT
- */
 public class Pais {
     private String iso3, iso2, nombre, capital;
 
@@ -53,6 +44,4 @@ public class Pais {
     public void setCapital(String capital) {
         this.capital = capital;
     }
-    
-    
 }

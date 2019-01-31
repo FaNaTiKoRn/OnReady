@@ -21,7 +21,6 @@
             <props>
                 <prop key="index.htm">indexController</prop>
                 <prop key="home.htm">homeController</prop>
-                <prop key="form.htm">formController</prop>
                 <prop key="add.htm">addController</prop>
                 <prop key="edit.htm">editController</prop>
                 <prop key="delete.htm">deleteController</prop>
@@ -40,7 +39,6 @@
     -->
     <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController" p:viewName="index" />
     <bean name="homeController" class="com.onreadyjtt.controller.HomeController" />
-    <bean name="formController" class="com.onreadyjtt.controller.FormController" />
     <bean name="addController" class="com.onreadyjtt.controller.AddController" />
     <bean name="editController" class="com.onreadyjtt.controller.EditController" />
     <bean name="deleteController" class="com.onreadyjtt.controller.DeleteController" />

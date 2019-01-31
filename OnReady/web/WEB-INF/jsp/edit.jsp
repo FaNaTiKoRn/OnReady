@@ -1,8 +1,17 @@
+<%-- 
+    Document   : Movie Edition View.
+    Created on : 26/01/2019, 08:19:12
+    Author     : José Torres Tortorella
+    Comments   : This file represents the View from the Adding Movie Page.
+--%>
+
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"   %>
 <%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<c:set scope="page" value="${paisActual}" var="paisActual" />
+<c:set scope="page" value="${paisActualIso3}" var="paisActualIso3" />
+<c:set scope="page" value="${paisActualNombre}" var="paisActualNombre" />
 
+<!-- Scripts para la correcta implementación de Bootstrap -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" ></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.js" ></script>
@@ -45,7 +54,7 @@
                                 <tr>
                                     <td>
                                         <select name="pais">
-                                            <option value="${paisActual}">${paisActual}</option>
+                                            <option value="${paisActualIso3}">${paisActualNombre}</option>
                                             <c:forEach items="${paises}" var="pais">
                                                 <option value="${pais.iso3}">${pais.nombre}</option>
                                             </c:forEach>

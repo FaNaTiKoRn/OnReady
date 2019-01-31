@@ -1,24 +1,22 @@
-
 package com.onreadyjtt.controller;
 
+import java.util.List;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import com.onready.models.Conecta;
 import com.onready.models.Pelicula;
 import com.onready.models.ValidaPelicula;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
-import org.springframework.dao.DataAccessException;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.ResultSetExtractor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.dao.DataAccessException;
 import org.springframework.web.servlet.ModelAndView;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 @Controller
 @RequestMapping("edit.htm")
@@ -45,11 +43,15 @@ public class EditController
         String sql = "select * from paises";
         List paises = this.jdbcTemplate.queryForList(sql);
         mav.addObject("paises", paises);
-        String sql2 = "SELECT iso3, nombre FROM paises INNER JOIN movies WHERE paises.iso3 = movies.pais AND movies.id = '" + id + "'";
-        List paisActual = this.jdbcTemplate.queryForList(sql2);
-        mav.addObject("paisActual", paisActual);
+        String sql2 = "SELECT iso3 FROM paises INNER JOIN movies WHERE paises.iso3 = movies.pais AND movies.id = '" + id + "'";
+        List paisActualIso3 = this.jdbcTemplate.queryForList(sql2);
+        mav.addObject("paisActualIso3", paisActualIso3);
+        sql2 = "SELECT nombre FROM paises INNER JOIN movies WHERE paises.iso3 = movies.pais AND movies.id = '" + id + "'";
+        List paisActualNombre = this.jdbcTemplate.queryForList(sql2);
+        mav.addObject("paisActualNombre", paisActualNombre);
         return mav;
     }
+    
     @RequestMapping(method=RequestMethod.POST)
     public ModelAndView form
         (

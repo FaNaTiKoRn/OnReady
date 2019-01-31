@@ -77,7 +77,7 @@ public class FormController
         }else
         {
             //acá entramos si el usuario ingresó bien los datos
-            ModelAndView mav=new ModelAndView();
+            ModelAndView mav = new ModelAndView();
             mav.setViewName("exito");
             mav.addObject("titulo",p.getTitulo());
             mav.addObject("estreno",p.getEstreno());
